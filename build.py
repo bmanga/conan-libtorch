@@ -3,9 +3,10 @@
 
 
 from bincrafters import build_template_default
+import os
 
 if __name__ == "__main__":
-    config_url = "https://github.com/bincrafters/conan-config.git"
+    os.environ["CONAN_REMOTES"]="https://api.bintray.com/conan/conan-community/conan"
 
     builder = build_template_default.get_builder()
 
