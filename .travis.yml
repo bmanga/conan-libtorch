@@ -11,29 +11,29 @@ osx: &osx
 matrix:
    include:
       - <<: *linux
-        env: CONAN_GCC_VERSIONS=4.9 CONAN_DOCKER_IMAGE=conanio/gcc49 CXX_FLAGS="-Wno-sign-compare"
+        env: CONAN_GCC_VERSIONS=4.9 CONAN_DOCKER_IMAGE=conanio/gcc49 CXX_FLAGS="-Wno-sign-compare" CONAN_ARCHS=x86_64
       - <<: *linux
-        env: CONAN_GCC_VERSIONS=5 CONAN_DOCKER_IMAGE=conanio/gcc5 CXX_FLAGS="-Wno-sign-compare"
+        env: CONAN_GCC_VERSIONS=5 CONAN_DOCKER_IMAGE=conanio/gcc5 CXX_FLAGS="-Wno-sign-compare" CONAN_ARCHS=x86_64
       - <<: *linux
-        env: CONAN_GCC_VERSIONS=6 CONAN_DOCKER_IMAGE=conanio/gcc6 CXX_FLAGS="-Wno-sign-compare"
+        env: CONAN_GCC_VERSIONS=6 CONAN_DOCKER_IMAGE=conanio/gcc6 CXX_FLAGS="-Wno-sign-compare" CONAN_ARCHS=x86_64
       - <<: *linux
-        env: CONAN_GCC_VERSIONS=7 CONAN_DOCKER_IMAGE=conanio/gcc7 CXX_FLAGS="-Wno-sign-compare"
+        env: CONAN_GCC_VERSIONS=7 CONAN_DOCKER_IMAGE=conanio/gcc7 CXX_FLAGS="-Wno-sign-compare" CONAN_ARCHS=x86_64
       - <<: *linux
-        env: CONAN_GCC_VERSIONS=8 CONAN_DOCKER_IMAGE=conanio/gcc8 CXX_FLAGS="-Wno-sign-compare"
+        env: CONAN_GCC_VERSIONS=8 CONAN_DOCKER_IMAGE=conanio/gcc8 CXX_FLAGS="-Wno-sign-compare" CONAN_ARCHS=x86_64
       - <<: *linux
-        env: CONAN_GCC_VERSIONS=9 CONAN_DOCKER_IMAGE=conanio/gcc9 CXX_FLAGS="-Wno-sign-compare"
+        env: CONAN_GCC_VERSIONS=9 CONAN_DOCKER_IMAGE=conanio/gcc9 CXX_FLAGS="-Wno-sign-compare" CONAN_ARCHS=x86_64
       - <<: *linux
-        env: CONAN_CLANG_VERSIONS=3.9 CONAN_DOCKER_IMAGE=conanio/clang39 CXX_FLAGS="-Wno-sign-compare"
+        env: CONAN_CLANG_VERSIONS=3.9 CONAN_DOCKER_IMAGE=conanio/clang39 CXX_FLAGS="-Wno-sign-compare" CONAN_ARCHS=x86_64
       - <<: *linux
-        env: CONAN_CLANG_VERSIONS=4.0 CONAN_DOCKER_IMAGE=conanio/clang40 CXX_FLAGS="-Wno-sign-compare"
+        env: CONAN_CLANG_VERSIONS=4.0 CONAN_DOCKER_IMAGE=conanio/clang40 CXX_FLAGS="-Wno-sign-compare" CONAN_ARCHS=x86_64
       - <<: *linux
-        env: CONAN_CLANG_VERSIONS=5.0 CONAN_DOCKER_IMAGE=conanio/clang50 CXX_FLAGS="-Wno-sign-compare"
+        env: CONAN_CLANG_VERSIONS=5.0 CONAN_DOCKER_IMAGE=conanio/clang50 CXX_FLAGS="-Wno-sign-compare" CONAN_ARCHS=x86_64
       - <<: *linux
-        env: CONAN_CLANG_VERSIONS=6.0 CONAN_DOCKER_IMAGE=conanio/clang60 CXX_FLAGS="-Wno-sign-compare"
+        env: CONAN_CLANG_VERSIONS=6.0 CONAN_DOCKER_IMAGE=conanio/clang60 CXX_FLAGS="-Wno-sign-compare" CONAN_ARCHS=x86_64
       - <<: *linux
-        env: CONAN_CLANG_VERSIONS=7.0 CONAN_DOCKER_IMAGE=conanio/clang7 CXX_FLAGS="-Wno-sign-compare"
+        env: CONAN_CLANG_VERSIONS=7.0 CONAN_DOCKER_IMAGE=conanio/clang7 CXX_FLAGS="-Wno-sign-compare" CONAN_ARCHS=x86_64
       - <<: *linux
-        env: CONAN_CLANG_VERSIONS=8 CONAN_DOCKER_IMAGE=conanio/clang8 CXX_FLAGS="-Wno-sign-compare"
+        env: CONAN_CLANG_VERSIONS=8 CONAN_DOCKER_IMAGE=conanio/clang8 CXX_FLAGS="-Wno-sign-compare" CONAN_ARCHS=x86_64
       - <<: *osx
         osx_image: xcode8.3
         env: CONAN_APPLE_CLANG_VERSIONS=8.1 CXX_FLAGS="-Wno-sign-compare"
