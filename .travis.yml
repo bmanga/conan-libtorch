@@ -2,6 +2,7 @@ env:
   global:
     - CXXFLAGS="-w" # Disable all warnings or risk travis killing the job for too long a log
     - CONAN_ARCHS=x86_64
+    - CONAN_OPTIONS="libtorch:shared=True"
 
 linux: &linux
    os: linux
