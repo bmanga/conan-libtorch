@@ -14,7 +14,7 @@ class LibtorchConan(ConanFile):
     settings = "os", "compiler", "build_type", "arch"
     options = {"shared": [True, False]}
     default_options = {"shared": True}
-    generators = ["cmake", "cmake_find_package"]
+    generators = ["cmake"]
 
     _source_subfolder = "source_subfolder"
     _build_subfolder = "build_subfolder"
@@ -23,7 +23,7 @@ class LibtorchConan(ConanFile):
         self.requires("eigen/3.3.7@conan/stable")
         self.requires("pybind11/2.2.4@conan/stable")
         self.requires("openblas/0.3.5@conan/stable")
-
+        self.requires("protobuf/3.6.1@bincrafters/stable")
 
     def source(self):
         git = tools.Git(folder="source_subfolder")
@@ -35,7 +35,7 @@ class LibtorchConan(ConanFile):
         self.run("cd source_subfolder && git submodule update --init third_party/onnx")
         self.run("cd source_subfolder && git submodule update --init third_party/foxi")
         self.run("cd source_subfolder && git submodule update --init third_party/sleef")
-        self.run("cd source_subfolder && git submodule update --init third_party/protobuf")
+        #self.run("cd source_subfolder && git submodule update --init third_party/protobuf")
 
 
     def _configure_cmake(self):
@@ -48,7 +48,7 @@ class LibtorchConan(ConanFile):
         cmake.definitions["BUILD_PYTHON"] = False
         cmake.definitions["BUILD_CAFFE2_MOBILE"]=False
         cmake.definitions["BUILD_TEST"] = False
-        cmake.definitions["BUILD_CUSTOM_PROTOBUF"] = True
+        cmake.definitions["BUILD_CUSTOM_PROTOBUF"] = False
         cmake.definitions["BUILD_DOCS"] = False
         cmake.definitions["BUILD_CAFFE2_OPS"] = True
         cmake.definitions["BUILD_SHARED_LIBS"] = self.options.shared
