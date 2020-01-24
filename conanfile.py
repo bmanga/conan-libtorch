@@ -5,15 +5,23 @@ import os
 
 class LibtorchConan(ConanFile):
     name = "libtorch"
-    version = "1.2.0"
+    version = "1.4.0"
     license = "Pytorch"
     author = ""
     url = "<Package recipe repository url here, for issues about the package>"
     description = "An open source machine learning framework that accelerates the path from research prototyping to production deployment."
     topics = ("pytorch", "torch", "libtorch", "machine learning", "neural networks")
     settings = "os", "compiler", "build_type", "arch"
-    options = {"shared": [True, False]}
-    default_options = {"shared": True}
+    options = {
+        "shared": [True, False],
+        "use_cuda": [True, False],
+        "use_cudnn": [True, False]
+    }
+    default_options = {
+        "shared": True,
+        "use_cuda": True,
+        "use_cudnn": True
+    }
     generators = ["cmake"]
 
     _source_subfolder = "source_subfolder"
@@ -22,8 +30,9 @@ class LibtorchConan(ConanFile):
     def requirements(self):
         self.requires("eigen/3.3.7@conan/stable")
         self.requires("pybind11/2.2.4@conan/stable")
-        self.requires("openblas/0.3.5@conan/stable")
-        self.requires("protobuf/3.6.1@bincrafters/stable")
+        self.requires("openblas/0.3.7")
+        self.requires("protobuf/3.9.1")
+        self.requires("protoc_installer/3.9.1@bincrafters/stable")
 
     def source(self):
         git = tools.Git(folder="source_subfolder")
@@ -35,7 +44,8 @@ class LibtorchConan(ConanFile):
         self.run("cd source_subfolder && git submodule update --init third_party/onnx")
         self.run("cd source_subfolder && git submodule update --init third_party/foxi")
         self.run("cd source_subfolder && git submodule update --init third_party/sleef")
-        #self.run("cd source_subfolder && git submodule update --init third_party/protobuf")
+        if self.options.use_cuda:
+            self.run("cd source_subfolder && git submodule update --init third_party/cub")
 
 
     def _configure_cmake(self):
@@ -70,8 +80,8 @@ class LibtorchConan(ConanFile):
         cmake.definitions["USE_OPENCV"] = False
         cmake.definitions["USE_FFMPEG"] = False
         cmake.definitions["USE_OPENMP"] = False
-        cmake.definitions["USE_CUDA"] = False
-        cmake.definitions["USE_CUDNN"] = False
+        cmake.definitions["USE_CUDA"] = self.options.use_cuda
+        cmake.definitions["USE_CUDNN"] = self.options.use_cudnn
         cmake.definitions["USE_NVRTC"] = False
         cmake.definitions["USE_TENSORRT"] = False
         cmake.definitions["USE_ROCM"] = False
